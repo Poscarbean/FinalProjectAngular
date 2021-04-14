@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { IngredientFormComponent } from './ingredient-form/ingredient-form.component';
 import { IngredientListComponent } from './ingredient-list/ingredient-list.component';
 import { IngredientUpdateFormComponent } from './ingredient-update-form/ingredient-update-form.component';
+import { RecipeShowComponent } from './recipe-show/recipe-show.component';
 
 const ROUTES: Routes = [
   { path: 'home', component: HomeComponent },
@@ -13,6 +14,7 @@ const ROUTES: Routes = [
     component: IngredientListComponent
   },
   { path: 'ingredients/update/:id', component: IngredientUpdateFormComponent },
+  { path: 'recipes', component: RecipeShowComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full'},
   { path: '**', redirectTo: '/home', pathMatch: 'full'}
 ];

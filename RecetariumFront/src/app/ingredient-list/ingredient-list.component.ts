@@ -15,12 +15,12 @@ export class IngredientListComponent implements OnInit {
     name: 'Nombre'
   };
 
-  ingredients: Ingredient[] = [];
+  ingredients!: Ingredient[];
 
   constructor(private ingredientService: IngredientService) { }
 
   ngOnInit(): void {
-    this.ingredientService.getIngredients().subscribe(
+    this.ingredientService.getAll().subscribe(
       ingredients => this.ingredients = ingredients,
       error => console.error(error),
       () => console.log('Petición completada')

@@ -1,0 +1,8 @@
+<div class="card-columns mt-4" *ngIf="recipes && recipes.length; else noRecipes">
+  <recipe-item class="card" [recipe]="recipe" (deleted)="deleteRecipe(evento)"
+    *ngFor="let recipe of recipes">
+  </recipe-item>
+</div>
+<ng-template #noRecipes>
+  <h3>No hay recetas disponibles</h3>
+</ng-template>
