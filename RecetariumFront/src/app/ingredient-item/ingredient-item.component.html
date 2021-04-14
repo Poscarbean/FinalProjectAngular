@@ -1,0 +1,13 @@
+<div class="col-2 pl-2">
+  <td><button class="btn btn-sm btn-outline-danger mr-2" (click)="deleteIngredient()">X</button></td>
+</div>
+<div class="col-3">{{ingredient.quantity}}</div>
+<div class="col-3">{{ingredient.measure}}</div>
+<div class="col-3">{{ingredient.name}}</div>
+<div class="col-2 pl-2">
+  <td>
+    <a [routerLink]="['/products/update', ingredient.idIngredient]">
+      <button class="btn btn-sm btn-outline-warning mr-2">Cambiar</button>
+    </a>
+  </td>
+</div>
