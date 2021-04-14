@@ -12,6 +12,9 @@ import { BaseUrlInterceptor } from './interceptors/base-url.interceptor';
 import { IngredientFormComponent } from './ingredient-form/ingredient-form.component';
 import { IngredientFilterPipe } from './pipes/ingredient-filter.pipe';
 import { IngredientUpdateFormComponent } from './ingredient-update-form/ingredient-update-form.component';
+import { RecipeShowComponent } from './recipe-show/recipe-show.component';
+import { RecipeItemComponent } from './recipe-item/recipe-item.component';
+import { RecipeDifficultyComponent } from './recipe-difficulty/recipe-difficulty.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,10 @@ import { IngredientUpdateFormComponent } from './ingredient-update-form/ingredie
     IngredientItemComponent,
     IngredientFormComponent,
     IngredientFilterPipe,
-    IngredientUpdateFormComponent
+    IngredientUpdateFormComponent,
+    RecipeShowComponent,
+    RecipeItemComponent,
+    RecipeDifficultyComponent
   ],
   imports: [
     BrowserModule,

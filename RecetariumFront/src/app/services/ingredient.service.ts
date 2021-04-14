@@ -13,7 +13,7 @@ export class IngredientService {
 
   constructor(private http:HttpClient) { }
 
-  getIngredients(): Observable<Ingredient[]> {
+  getAll(): Observable<Ingredient[]> {
     return this.http.get<ResponseIngredients>(`${this.URL}/all`).pipe(
       map(response => response.ingredients),
       catchError((error: HttpErrorResponse) => {
