@@ -10,12 +10,11 @@ import { IngredientService } from '../services/ingredient.service';
 export class IngredientListComponent implements OnInit {
   title = 'Lista de ingredientes';
   headers = {
-    quantity: 'Cantidad',
-    measure: 'Medida',
-    name: 'Nombre'
+    ingredientName: 'Nombre'
   };
 
   ingredients!: Ingredient[];
+  search!: '';
 
   constructor(private ingredientService: IngredientService) { }
 
