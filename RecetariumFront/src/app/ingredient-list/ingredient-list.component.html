@@ -1,28 +1,46 @@
-<ingredient-form (insert)="addIngredient($event)"></ingredient-form>
 <div class="card">
   <div class="card-header bg-primary text-white">
     {{ title }}
   </div>
   <div class="card-block" *ngIf="ingredients.length">
-    <div *ngIf="ingredients && ingredients.length">
-      <div class="row headers no-gutters">
-        <div class="col-3"></div>
-        <div class="col-3">{{ headers.quantity }}</div>
-        <div class="col-3">{{ headers.measure }}</div>
-        <div class="col-3">{{ headers.name }}</div>
+    <form class="form mt-3">
+      <div class="form-group row">
+        <label class="col-form-label col-sm-2 text-sm-right" for="filterDesc"
+          >Filtro:</label
+        >
+        <div class="col-sm-3">
+          <input
+            type="text"
+            [(ngModel)]="search"
+            class="form-control"
+            name="filterDesc"
+            id="filterDesc"
+            placeholder="Filter..."
+          />
+        </div>
+        <label class="col-form-label col-sm-5">
+          Filtrando por: {{ search }}
+        </label>
       </div>
-      <ingredient-item
-      [ingredient]="ingredient"
-      class="row no no-gutters"
-      *ngFor="let ingredient of ingredients"
-      (deleted)="deleteIngredient(ingredient)">
-      </ingredient-item>
+    </form>
+
+
+    <div class="row headers no-gutters">
+      <!-- <div class="col-2"></div> -->
+      <div class="col-10">{{ headers.ingredientName }}</div>
     </div>
-    <ng-template #sinIngredientes>
-      <div *ngIf="!ingredients.length">
-        No hay productos para mostrar
-      </div>
-    </ng-template>
+    <ingredient-item
+      class="row no-gutters"
+      *ngFor="let ingredient of ingredients | ingredientFilter: search"
+      [ingredient]="ingredient"
+      (delete)="deleteIngredient(ingredient)"
+    >
+    </ingredient-item>
   </div>
+</div>
+<div>
+  <button type="button" class="btn btn-primary" (click)="goAdd()">
+    Añadir nuevo ingrediente
+  </button>
 </div>
 

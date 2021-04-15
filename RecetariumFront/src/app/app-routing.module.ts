@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { IngredientFormGuard } from './guards/ingredient-form.guard';
 import { HomeComponent } from './home/home.component';
 import { IngredientFormComponent } from './ingredient-form/ingredient-form.component';
 import { IngredientListComponent } from './ingredient-list/ingredient-list.component';
@@ -11,12 +12,13 @@ const ROUTES: Routes = [
   { path: 'ingredients', component: IngredientListComponent },
   {
     path: 'ingredients/add',
-    component: IngredientListComponent
+    component: IngredientFormComponent,
+    canDeactivate: [IngredientFormGuard]
   },
+  { path: 'recipes', component: RecipeShowComponent },
   { path: 'ingredients/update/:id', component: IngredientUpdateFormComponent },
-  { path: 'recipes', component: RecipeShowComponent},
-  { path: '', redirectTo: '/home', pathMatch: 'full'},
-  { path: '**', redirectTo: '/home', pathMatch: 'full'}
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '**', redirectTo: '/home', pathMatch: 'full' }
 ];
 
 @NgModule({

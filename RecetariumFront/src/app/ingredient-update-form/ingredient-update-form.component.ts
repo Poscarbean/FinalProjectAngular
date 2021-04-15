@@ -15,6 +15,8 @@ export class IngredientUpdateFormComponent implements OnInit {
   @Input() ingredient!: Ingredient;
   @Output() insert = new EventEmitter<Ingredient>();
 
+
+
   newIngredient!: Ingredient;
   ingredientAdded = false;
   @ViewChild('formIngredient') formIngredient!: NgForm;
@@ -27,23 +29,25 @@ export class IngredientUpdateFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.title.setTitle('Recetarium Santiosquiano | Editar ingrediente')
+    this.resetForm();
+
   }
 
   resetForm(): void {
     this.newIngredient = {
-      name: '',
-      quantity: 0,
-      measure: ''
+      ingredientName: ''
     };
   }
 
   updateIngredient(newIngredient: Ingredient) {
     const oldIngredient: Ingredient = this.ingredient;
+    console.log(this.ingredient);
     this.ingredient = newIngredient;
-    this.ingredientService.updateIngredient(this.ingredient.idIngredient as number, newIngredient).subscribe({
+    this.ingredientService.updateIngredient(this.newIngredient.idIngredient as number, newIngredient).subscribe({
       error: error => {
         this.ingredient = oldIngredient;
         console.error(error);
+
       }
     });
   }

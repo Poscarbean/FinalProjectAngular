@@ -23,7 +23,7 @@ export class RecipeService {
   }
 
   getRecipe(id: number): Observable<Recipe> {
-    return this.http.get<ResponseRecipe>(`${this.URL}/ingredient/${id}`).pipe(
+    return this.http.get<ResponseRecipe>(`${this.URL}/recipe/${id}`).pipe(
       map(response => response.recipe)
     );
   }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Ingredient } from '../interfaces/ingredient';
 import { IngredientService } from '../services/ingredient.service';
 
@@ -13,10 +14,13 @@ export class IngredientListComponent implements OnInit {
     ingredientName: 'Nombre'
   };
 
-  ingredients!: Ingredient[];
-  search!: '';
+  ingredients: Ingredient[] = [];
+  search = '';
 
-  constructor(private ingredientService: IngredientService) { }
+  constructor(
+    private ingredientService: IngredientService,
+    private router: Router
+    ) { }
 
   ngOnInit(): void {
     this.ingredientService.getAll().subscribe(
@@ -32,6 +36,10 @@ export class IngredientListComponent implements OnInit {
 
   deleteIngredient(ingredient: Ingredient): void {
     this.ingredients = this.ingredients.filter(i => i !== ingredient);
+  }
+
+  goAdd(): void {
+    this.router.navigate(['ingredients/add']);
   }
 
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Recipe } from '../interfaces/recipe';
 import { RecipeService } from '../services/recipe.service';
 
@@ -11,8 +12,12 @@ export class RecipeShowComponent implements OnInit {
   title = 'Recetas'
 
   recipes!: Recipe[];
+  search = '';
 
-  constructor(private recipeService: RecipeService) { }
+  constructor(
+    private recipeService: RecipeService,
+    private router: Router
+    ) { }
 
   ngOnInit(): void {
     this.recipeService.getAll().subscribe(
@@ -22,12 +27,26 @@ export class RecipeShowComponent implements OnInit {
     );
   }
 
+  orderDifficultyAsc(): void {
+    this.recipes.sort((r1, r2) => r1.difficulty - r2.difficulty);
+    this.recipes = [...this.recipes];
+  }
+
+  orderDifficultyDesc(): void {
+    this.recipes.sort((r1, r2) => r2.difficulty - r1.difficulty);
+    this.recipes = [...this.recipes];
+  }
+
   addRecipe(recipe: Recipe): void {
     this.recipes = [...this.recipes, recipe];
   }
 
   deleteRecipe(recipe: Recipe): void {
     this.recipes = this.recipes.filter(i => i !== recipe);
+  }
+
+  goAdd(): void {
+    this.router.navigate(['recipes/add']);
   }
 
 }

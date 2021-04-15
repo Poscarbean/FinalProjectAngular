@@ -14,7 +14,8 @@ import { IngredientFilterPipe } from './pipes/ingredient-filter.pipe';
 import { IngredientUpdateFormComponent } from './ingredient-update-form/ingredient-update-form.component';
 import { RecipeShowComponent } from './recipe-show/recipe-show.component';
 import { RecipeItemComponent } from './recipe-item/recipe-item.component';
-import { RecipeDifficultyComponent } from './recipe-difficulty/recipe-difficulty.component';
+import { RecipeFilterPipe } from './pipes/recipe-filter.pipe';
+import { RecipesFormComponent } from './recipes-form/recipes-form.component';
 
 @NgModule({
   declarations: [
@@ -27,13 +28,14 @@ import { RecipeDifficultyComponent } from './recipe-difficulty/recipe-difficulty
     IngredientUpdateFormComponent,
     RecipeShowComponent,
     RecipeItemComponent,
-    RecipeDifficultyComponent
+    RecipeFilterPipe,
+    RecipesFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [
     {

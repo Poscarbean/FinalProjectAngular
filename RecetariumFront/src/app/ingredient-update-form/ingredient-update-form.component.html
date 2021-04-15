@@ -3,9 +3,9 @@
   <div class="card-block p-3">
     <form (ngSubmit)="updateIngredient(newIngredient)" #formIngredient="ngForm">
       <div class="form-group row">
-        <label class="col-sm-2 col-form-label text-sm-right">Nombre del ingrediente</label>
+        <label class="col-sm-2 col-form-label text-sm-right">Nuevo nombre del ingrediente</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="nombre" [(ngModel)]="newIngredient.name" minlength="2"
+          <input type="text" class="form-control" name="nombre" [(ngModel)]="newIngredient.ingredientName" minlength="2"
             maxlength="50" required #nameModel="ngModel" [ngClass]="{
               'is-valid': nameModel.dirty && nameModel.valid,
               'is-invalid': nameModel.untouched && nameModel.invalid
@@ -30,36 +30,14 @@
         </div>
       </div>
       <div class="form-group row">
-        <label class="col-sm-2 col-form-label text-sm-right">Cantidad</label>
-        <div class="col-sm-10">
-          <input type="number" class="form-control" name="quantity" [(ngModel)]="newIngredient.quantity" required
-            #quantityModel="ngModel" [ngClass]="{
-              'is-valid': quantityModel.dirty && quantityModel.valid,
-              'is-invalid': quantityModel.untouched && quantityModel.invalid
-            }" />
-          <div class="invalid-feedback">No has indicado cantidad</div>
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-sm-2 col-form-label text-sm-right">Medida</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" name="measure" [(ngModel)]="newIngredient.measure" required
-            #measureModel="ngModel" [ngClass]="{
-              'is-valid': measureModel.dirty && measureModel.valid,
-              'is-invalid': measureModel.untouched && measureModel.invalid
-            }" />
-          <!-- <div
-            class="invalid-feedback"
-            *ngIf="measureModel.invalid && measureModel.errors.required"
-          >
-            Indica la unidad en que se mide este ingrediente
-          </div> -->
-        </div>
-      </div>
-      <div class="form-group row">
         <div class="offset-sm-2 col-sm-10">
           <button type="submit" class="btn btn-primary" [disabled]="formIngredient.invalid">
             Cambiar
+          </button>
+        </div>
+        <div class="offset-sm-2 col-sm-10">
+          <button type="submit" class="btn btn-primary" [routerLink]="['/ingredients']">
+            Volver
           </button>
         </div>
       </div>
