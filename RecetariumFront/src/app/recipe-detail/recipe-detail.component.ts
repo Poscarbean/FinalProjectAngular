@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Recipe } from '../interfaces/recipe';
 
 @Component({
   selector: 'recipe-detail',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RecipeDetailComponent implements OnInit {
 
-  constructor() { }
+  recipe!: Recipe;
+
+  constructor(
+    private router: Router
+    ) { }
 
   ngOnInit(): void {
+  }
+
+  goBack() {
+    this.router.navigate(['/recipes']);
   }
 
 }

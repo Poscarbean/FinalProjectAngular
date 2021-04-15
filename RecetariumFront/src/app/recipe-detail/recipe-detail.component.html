@@ -1,1 +1,29 @@
-<p>recipe-detail works!</p>
+<img class="card-img-top" [src]="recipe.image" />
+<div class="card-body">
+  <h4 class="card-title">
+    {{ recipe.recipeName| titlecase }}
+  </h4>
+  <p class="card-text" [innerText]="recipe.description"></p>
+  <br>
+</div>
+<div class="card-footer text-muted">
+  {{ recipe.timeRequired }}
+  <span class="float-right" *ngFor="let fork of [1, 2, 3, 4, 5]">
+    {{fork <= recipe.difficulty ? '🍴' : ' ' }} </span>
+</div>
+
+<div class="card-body">
+  <ul class="list-group" *ngFor="let ingredient of recipe.ingredients">
+    <li class="list-group-item active"></li>
+    <li class="list-group-item"></li>
+  </ul>
+</div><br>
+
+<div>
+  <p class="card-text" [innerText]="recipe.instructions"></p>
+</div>
+
+<div class="row mr-4 align-items-center">
+  <button class="btn btn-info col" (click)="goBack()">Volver</button>
+</div>
+
