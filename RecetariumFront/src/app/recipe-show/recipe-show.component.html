@@ -13,14 +13,14 @@
   </form>
 </nav>
 <div class="card-columns mt-4" *ngIf="recipes && recipes.length; else noRecipes">
-  <recipe-item class="card" [recipe]="recipe" (deleted)="deleteRecipe(recipe)" *ngFor="let recipe of recipes | recipeFilter: search">
+  <recipe-item class="card" [recipe]="recipe" (delete)="deleteRecipe(recipe)" *ngFor="let recipe of recipes | recipeFilter: search">
   </recipe-item>
 </div>
 <ng-template #noRecipes>
   <h3>No hay recetas disponibles</h3>
 </ng-template>
 <div>
-  <button type="button" class="btn btn-primary" (click)="goAdd()">
+  <button type="button" class="btn btn-success" (click)="goAdd()">
     Añadir nueva receta
   </button>
 </div>

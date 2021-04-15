@@ -19,18 +19,33 @@
     <div class="row headers no-gutters">
       <div class="col-10">{{ headers.ingredientName }}</div>
     </div>
-    <ingredient-item class="row no-gutters" *ngFor="let ingredient of ingredients | ingredientFilter: search"
-      [ingredient]="ingredient" (delete)="deleteIngredient(ingredient)">
-    </ingredient-item>
+    <recipe-ingredient-item class="row no-gutters" *ngFor="let ingredient of ingredients | ingredientFilter: search"
+      [ingredient]="ingredient"
+      (add)="addRecipeIngredient(ingredient)">
+    </recipe-ingredient-item>
   </div>
+</div>
+
+<div class="card-header bg-primary text-white">
+  Ingredientes seleccionados
+</div>
+<div class="card">
+  <div class="row headers no-gutters">
+    <div class="col-10">{{ headers.ingredientName }}</div>
+  </div>
+  <ul class="row no-gutters" *ngFor="let recipeIngredient of recipeIngredients">
+    <li>{{ recipeIngredient.ingredientName }}</li>
+  </ul>
 </div><br>
+
 <div>
-  <button type="button" class="btn btn-success" (click)="goAdd()">
-    Añadir nuevo ingrediente
+  <button type="button" class="btn btn-success" [routerLink]="['/recipes/add']" [disabled]="!recipeIngredients.length">
+    Siguiente
   </button>
 </div><br>
+
 <div>
-  <button type="button" class="btn btn-warning" [routerLink]="['/home']">
+  <button type="button" class="btn btn-primary" [routerLink]="['/recipes']">
     Volver
   </button>
 </div>

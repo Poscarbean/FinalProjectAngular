@@ -30,9 +30,4 @@ export class IngredientItemComponent implements OnInit {
   goChange() {
     this.router.navigate(['/ingredients/update/', this.ingredient.idIngredient]);
   }
-
-  /* updateIngredient(ingredientOld: Ingredient,ingredientUpdated: Ingredient): void {
-    this.ingredients = this.ingredients.filter(i => i !== ingredientOld);
-    this.ingredients = [...this.ingredients, ingredientUpdated];
-  } */
 }

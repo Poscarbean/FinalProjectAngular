@@ -11,7 +11,7 @@ import { RecipeService } from '../services/recipe.service';
 export class RecipeShowComponent implements OnInit {
   title = 'Recetas'
 
-  recipes!: Recipe[];
+  recipes: Recipe[] = [];
   search = '';
 
   constructor(
@@ -42,11 +42,11 @@ export class RecipeShowComponent implements OnInit {
   }
 
   deleteRecipe(recipe: Recipe): void {
-    this.recipes = this.recipes.filter(i => i !== recipe);
+    this.recipes = this.recipes.filter(r => r !== recipe);
   }
 
   goAdd(): void {
-    this.router.navigate(['recipes/add']);
+    this.router.navigate(['recipes/addingredients']);
   }
 
 }

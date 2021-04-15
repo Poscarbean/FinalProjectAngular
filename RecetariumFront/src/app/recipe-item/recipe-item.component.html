@@ -1,7 +1,7 @@
 <img class="card-img-top" [src]="recipe.image" />
 <div class="card-body">
   <h4 class="card-title">
-    <a [routerLink]="['/recipes', recipe.id_recipe]">{{ recipe.recipeName| titlecase }}</a>
+    <a [routerLink]="['/recipes', recipe.idRecipe]">{{ recipe.recipeName| titlecase }}</a>
   </h4>
   <p class="card-text" [innerText]="recipe.description"></p>
   <div class="row mr-4 align-items-center">
