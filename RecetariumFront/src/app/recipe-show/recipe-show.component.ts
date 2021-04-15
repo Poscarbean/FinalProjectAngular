@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Recipe } from '../interfaces/recipe';
 import { RecipeService } from '../services/recipe.service';
@@ -11,6 +11,7 @@ import { RecipeService } from '../services/recipe.service';
 export class RecipeShowComponent implements OnInit {
   title = 'Recetas'
 
+  recipe!: Recipe;
   recipes: Recipe[] = [];
   search = '';
 

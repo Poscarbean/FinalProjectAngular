@@ -90,7 +90,7 @@
       <div class="form-group row">
         <label class="col-sm-2 col-form-label text-sm-right">Instrucciones</label>
         <div class="col-sm-10">
-          <input
+          <textarea
             type="text"
             class="form-control"
             name="instructions"
@@ -102,7 +102,7 @@
               'is-valid': instModel.dirty && instModel.valid,
               'is-invalid': instModel.untouched && instModel.invalid
             }"
-          />
+          ></textarea>
           <div class="invalid-feedback">Explica la elaboración</div>
         </div>
       </div>
@@ -131,10 +131,10 @@
 
       <div class="form-group row">
         <div class="offset-sm-2 col-sm-10">
-          <button type="submit" class="btn btn-primary" [disabled]="formRecipe.invalid">
+          <button type="submit" class="btn btn-success" [disabled]="formRecipe.invalid">
             Añadir receta
           </button>
-        </div>
+        </div><br><br>
         <div class="offset-sm-2 col-sm-10">
           <button type="submit" class="btn btn-primary" [routerLink]="['/recipes']">
             Volver
