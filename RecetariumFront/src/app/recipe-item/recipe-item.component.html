@@ -1,3 +1,4 @@
+<img class="card-img-top" [src]="recipe.image" />
 <div class="card-body">
   <h4 class="card-title">
     <a [routerLink]="['/recipes', recipe.id_recipe]">{{ recipe.recipeName| titlecase }}</a>
@@ -9,5 +10,6 @@
 </div>
 <div class="card-footer text-muted">
   {{ recipe.timeRequired }}
-  <!-- Aqui va la dificultad -->
+  <span class="float-right" *ngFor="let fork of [1, 2, 3, 4, 5]">
+    {{fork <= recipe.difficulty ? '🍴' : ' ' }} </span>
 </div>
