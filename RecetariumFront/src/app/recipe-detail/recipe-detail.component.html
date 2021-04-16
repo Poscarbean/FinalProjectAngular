@@ -1,3 +1,5 @@
+<div class="container">
+<div class="card">
 <img class="card-img-top" [src]="recipe.image"/>
 <div class="card-body">
   <h4 class="card-title">
@@ -14,7 +16,6 @@
 
 <div class="card-body">
   <ul class="list-group" *ngFor="let ingredient of recipe.ingredients">
-    <li class="list-group-item active"></li>
     <li class="list-group-item"></li>
   </ul>
 </div><br>
@@ -23,7 +24,11 @@
   <p class="card-text" [innerText]="recipe.instructions"></p>
 </div>
 
-<div class="row mr-4 align-items-center">
+</div><br>
+
+<div class="row mr-2 align-items-center">
   <button class="btn btn-info col" (click)="goBack()">Volver</button>
+</div>
+
 </div>
 

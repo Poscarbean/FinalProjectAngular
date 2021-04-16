@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Recipe } from '../interfaces/recipe';
 import { RecipeService } from '../services/recipe.service';
 
@@ -13,20 +14,33 @@ export class RecipeDetailComponent implements OnInit {
   @Input() recipe!: Recipe;
 
   constructor(
+    private title: Title,
     private recipeService: RecipeService,
+    private route: ActivatedRoute,
     private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.recipeService.getRecipe(this.recipe.idRecipe as number).subscribe(
-      recipe => this.recipe = recipe,
-      error => console.error(error),
-      () => console.log('Petición completada')
-    );
+  this.route.params.subscribe(
+    (params) => {
+      this.recipeService.getRecipe(params.id).subscribe(
+        recipe => {
+          this.recipe = recipe;
+          this.title.setTitle('Recetas Santiosquianas | ' + recipe.recipeName);
+        },
+        error => this.router.navigate(['/recipes'])
+      );
+    }
+  );
   }
 
   goBack() {
     this.router.navigate(['/recipes']);
   }
 
+ /*  this.route.data.subscribe(
+    data => this.recipe = data.recipe
+  ); */
+
 }
+
