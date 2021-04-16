@@ -1,4 +1,4 @@
-<img class="card-img-top" [src]="recipe.image" />
+<a [routerLink]="['/recipes/recipe', recipe.idRecipe]"><img *ngIf="recipe.image" class="card-img-top" [src]="recipe.image" /></a>
 <div class="card-body">
   <h4 class="card-title">
     <a [routerLink]="['/recipes/recipe', recipe.idRecipe]">{{ recipe.recipeName | titlecase }}</a>
