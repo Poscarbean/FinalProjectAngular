@@ -17,7 +17,7 @@
     </form>
 
     <div class="row headers no-gutters">
-      <div class="col-10">{{ headers.ingredientName }}</div>
+      <div class="col-11">{{ headers.ingredientName }}</div>
     </div>
     <ingredient-item class="row no-gutters" *ngFor="let ingredient of ingredients | ingredientFilter: search"
       [ingredient]="ingredient" (delete)="deleteIngredient(ingredient)">

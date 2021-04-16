@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Ingredient } from '../interfaces/ingredient';
 import { IngredientService } from '../services/ingredient.service';
 
@@ -16,7 +16,6 @@ export class IngredientUpdateFormComponent implements OnInit {
   @Output() insert = new EventEmitter<Ingredient>();
 
 
-
   newIngredient!: Ingredient;
   ingredientAdded = false;
   @ViewChild('formIngredient') formIngredient!: NgForm;
@@ -24,11 +23,11 @@ export class IngredientUpdateFormComponent implements OnInit {
   constructor(
     private ingredientService: IngredientService,
     private router: Router,
+    private route: ActivatedRoute,
     private title: Title
-    ) { }
+  ) { }
 
   ngOnInit(): void {
-    this.title.setTitle('Recetarium Santiosquiano | Editar ingrediente')
     this.resetForm();
 
   }
@@ -41,6 +40,18 @@ export class IngredientUpdateFormComponent implements OnInit {
 
   updateIngredient(newIngredient: Ingredient) {
     const oldIngredient: Ingredient = this.ingredient;
+    this.route.params.subscribe(
+      (params) => {
+        this.ingredientService.getIngredient(params.id).subscribe(
+          ingredient => {
+            this.ingredient = ingredient;
+            this.title.setTitle('Recetas Santiosquianas | Editando' + ingredient.ingredientName)
+          },
+          error => this.router.navigate(['/ingredients'])
+        );
+      }
+    )
+
     console.log(this.ingredient);
     this.ingredient = newIngredient;
     this.ingredientService.updateIngredient(this.newIngredient.idIngredient as number, newIngredient).subscribe({
@@ -51,7 +62,5 @@ export class IngredientUpdateFormComponent implements OnInit {
       }
     });
   }
-
-  //this.router.navigate(['/ingredients'])
 
 }
