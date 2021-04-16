@@ -1,34 +1,32 @@
 <div class="container">
-<div class="card">
-<img class="card-img-top" [src]="recipe.image"/>
-<div class="card-body">
-  <h4 class="card-title">
-    {{ recipe.recipeName | titlecase }}
-  </h4>
-  <p class="card-text" [innerText]="recipe.description"></p>
-  <br>
+  <div class="card">
+    <img class="card-img-top" [src]="recipe.image" />
+    <div class="card-body">
+      <h4 class="card-title">
+        {{ recipe.recipeName | titlecase }}
+      </h4>
+      <p class="card-text" [innerText]="recipe.description"></p>
+      <br>
+    </div>
+    <div class="card-footer text-muted">
+      {{ recipe.timeRequired }}
+      <span class="float-right" *ngFor="let fork of [1, 2, 3, 4, 5]">
+        {{fork <= recipe.difficulty ? '🍴' : ' ' }} </span>
+    </div>
+
+    <div class="card-body">
+      <ul class="list-group" *ngFor="let ingredient of recipe.ingredients">
+        <li class="list-group-item">{{ ingredient.ingredientName }}</li>
+      </ul>
+    </div><br>
+
+    <div class="card-body">
+      <p class="card-text" [innerText]="recipe.instructions"></p>
+    </div><br>
+
+    <div class="card-body">
+      <button class="btn btn-info col" (click)="goBack()">Volver</button>
+    </div>
+
+  </div>
 </div>
-<div class="card-footer text-muted">
-  {{ recipe.timeRequired }}
-  <span class="float-right" *ngFor="let fork of [1, 2, 3, 4, 5]">
-    {{fork <= recipe.difficulty ? '🍴' : ' ' }} </span>
-</div>
-
-<div class="card-body">
-  <ul class="list-group" *ngFor="let ingredient of recipe.ingredients">
-    <li class="list-group-item"></li>
-  </ul>
-</div><br>
-
-<div>
-  <p class="card-text" [innerText]="recipe.instructions"></p>
-</div>
-
-</div><br>
-
-<div class="row mr-2 align-items-center">
-  <button class="btn btn-info col" (click)="goBack()">Volver</button>
-</div>
-
-</div>
-

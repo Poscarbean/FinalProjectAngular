@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Ingredient } from '../interfaces/ingredient';
 import { Recipe } from '../interfaces/recipe';
 import { RecipeService } from '../services/recipe.service';
 
@@ -38,9 +39,6 @@ export class RecipeDetailComponent implements OnInit {
     this.router.navigate(['/recipes']);
   }
 
- /*  this.route.data.subscribe(
-    data => this.recipe = data.recipe
-  ); */
 
 }
 
