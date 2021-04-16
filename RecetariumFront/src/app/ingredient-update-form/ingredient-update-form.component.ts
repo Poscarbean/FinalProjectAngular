@@ -13,7 +13,6 @@ import { IngredientService } from '../services/ingredient.service';
 export class IngredientUpdateFormComponent implements OnInit {
 
   @Input() ingredient!: Ingredient;
-  @Output() insert = new EventEmitter<Ingredient>();
 
 
   newIngredient!: Ingredient;
