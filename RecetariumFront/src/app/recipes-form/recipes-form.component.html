@@ -1,0 +1,146 @@
+<div class="card">
+  <div class="card-header bg-success text-white">Crear receta</div>
+  <div class="card-block p-3">
+    <form (ngSubmit)="addRecipe()" #formRecipe="ngForm">
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label text-sm-right">Nombre de la receta</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" name="nombre" [(ngModel)]="newRecipe.recipeName" minlength="2"
+            maxlength="50" required #nameModel="ngModel" [ngClass]="{
+              'is-valid': nameModel.dirty && nameModel.valid,
+              'is-invalid': nameModel.untouched && nameModel.invalid
+            }" />
+          <!-- <div
+            class="invalid-feedback"
+            *ngIf="nameModel.invalid && nameModel.errors.required"
+          >
+            El nombre es obligatorio
+          </div>
+          <div
+            class="invalid-feedback"
+            *ngIf="nameModel.invalid && nameModel.errors.minlength"
+          >
+            Te faltan
+            {{
+              nameModel.errors.minlength.requiredLength -
+              nameModel.errors.minlength.actualLength
+            }}
+            caracteres
+          </div> -->
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label text-sm-right">Descripción</label>
+        <div class="col-sm-10">
+          <input
+            type="text"
+            class="form-control"
+            name="description"
+            [(ngModel)]="newRecipe.description"
+            minlength="10"
+            #descModel="ngModel"
+            [ngClass]="{
+              'is-valid': descModel.dirty && descModel.valid,
+              'is-invalid': descModel.untouched && descModel.invalid
+            }"
+          />
+          <div class="invalid-feedback">No has puesto una descripción</div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label text-sm-right">Dificultad</label>
+        <div class="col-sm-10">
+          <input
+            type="number"
+            class="form-control"
+            name="difficulty"
+            [(ngModel)]="newRecipe.difficulty"
+            min="1"
+            max="5"
+            #diffModel="ngModel"
+            [ngClass]="{
+              'is-valid': diffModel.dirty && diffModel.valid,
+              'is-invalid': diffModel.untouched && diffModel.invalid
+            }"
+          />
+          <div class="invalid-feedback">Introduce un nivel de dificultad (1-5)</div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label text-sm-right">Tiempo de elaboración</label>
+        <div class="col-sm-10">
+          <input
+            type="text"
+            class="form-control"
+            name="timeRequired"
+            [(ngModel)]="newRecipe.timeRequired"
+            #diffModel="ngModel"
+            [ngClass]="{
+              'is-valid': diffModel.dirty && diffModel.valid,
+              'is-invalid': diffModel.untouched && diffModel.invalid
+            }"
+          />
+          <div class="invalid-feedback">Introduce un nivel de dificultad (1-5)</div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label text-sm-right">Instrucciones</label>
+        <div class="col-sm-10">
+          <textarea
+            type="text"
+            class="form-control"
+            name="instructions"
+            [(ngModel)]="newRecipe.instructions"
+            required
+            minlength="10"
+            #instModel="ngModel"
+            [ngClass]="{
+              'is-valid': instModel.dirty && instModel.valid,
+              'is-invalid': instModel.untouched && instModel.invalid
+            }"
+          ></textarea>
+          <div class="invalid-feedback">Explica la elaboración</div>
+        </div>
+      </div>
+
+      <!-- Imagen sin implementar -->
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label text-sm-right">Imagen</label>
+        <div class="col-sm-10">
+          <input
+            type="file"
+            class="form-control"
+            name="image"
+            accept="image/*"
+            (change)="loadImage(imageInput)"
+            #imageInput
+            [(ngModel)]="imageFile"
+            #imgModel="ngModel"
+            [ngClass]="{
+              'is-valid': imgModel.dirty && imgModel.valid,
+              'is-invalid': imgModel.untouched && imgModel.invalid
+            }"
+          />
+          <div class="invalid-feedback">Explica la elaboración</div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="offset-sm-2 col-sm-10">
+          <button type="submit" class="btn btn-success" [disabled]="formRecipe.invalid">
+            Añadir receta
+          </button>
+        </div><br><br>
+        <div class="offset-sm-2 col-sm-10">
+          <button type="submit" class="btn btn-primary" [routerLink]="['/recipes']">
+            Volver
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

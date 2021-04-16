@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { Ingredient } from '../interfaces/ingredient';
 import { IngredientService } from '../services/ingredient.service';
 
@@ -11,15 +12,14 @@ import { IngredientService } from '../services/ingredient.service';
 })
 export class IngredientFormComponent implements OnInit {
 
-  @Output() insert = new EventEmitter<Ingredient>();
-
   newIngredient!: Ingredient;
   ingredientAdded = false;
   @ViewChild('formIngredient') formIngredient!: NgForm;
 
   constructor(
     private ingredientService: IngredientService,
-    private title: Title
+    private title: Title,
+    private router: Router
     ) { }
 
   ngOnInit(): void {
@@ -29,9 +29,7 @@ export class IngredientFormComponent implements OnInit {
 
   resetForm(): void {
     this.newIngredient = {
-      name: '',
-      quantity: 0,
-      measure: ''
+      ingredientName: ''
     };
   }
 
@@ -39,8 +37,7 @@ export class IngredientFormComponent implements OnInit {
     this.ingredientService.addIngredient(this.newIngredient).subscribe(
       ingredient => {
         this.ingredientAdded = true;
-        this.insert.emit(ingredient);
-        this.resetForm();
+        this.router.navigate(['/ingredients']);
       },
       error => console.error(error)
     );

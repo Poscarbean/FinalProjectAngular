@@ -4,23 +4,24 @@ import { Ingredient } from '../interfaces/ingredient';
 import { IngredientService } from '../services/ingredient.service';
 
 @Component({
-  selector: 'ingredient-list',
-  templateUrl: './ingredient-list.component.html',
-  styleUrls: ['./ingredient-list.component.css']
+  selector: 'recipe-ingredient-form',
+  templateUrl: './recipe-ingredient-form.component.html',
+  styleUrls: ['./recipe-ingredient-form.component.css']
 })
-export class IngredientListComponent implements OnInit {
+export class RecipeIngredientFormComponent implements OnInit {
   title = 'Lista de ingredientes';
   headers = {
     ingredientName: 'Nombre'
   };
 
   ingredients: Ingredient[] = [];
+  recipeIngredients: Ingredient[] = [];
   search = '';
 
   constructor(
     private ingredientService: IngredientService,
     private router: Router
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     this.ingredientService.getAll().subscribe(
@@ -30,16 +31,10 @@ export class IngredientListComponent implements OnInit {
     );
   }
 
-  addIngredient(ingredient: Ingredient): void {
-    this.ingredients = [...this.ingredients, ingredient];
+  addRecipeIngredient(ingredient: Ingredient): void {
+    this.recipeIngredients = [...this.recipeIngredients, ingredient];
   }
 
-  deleteIngredient(ingredient: Ingredient): void {
-    this.ingredients = this.ingredients.filter(i => i !== ingredient);
-  }
 
-  goAdd(): void {
-    this.router.navigate(['ingredients/add']);
-  }
 
 }

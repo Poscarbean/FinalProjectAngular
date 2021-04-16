@@ -18,7 +18,7 @@ export class RecipeItemComponent implements OnInit {
   }
 
   deleteRecipe() {
-    this.recipeService.deleteRecipe(this.recipe.id_recipe as number).subscribe(
+    this.recipeService.deleteRecipe(this.recipe.idRecipe as number).subscribe(
       () => this.delete.emit()
     );
   }

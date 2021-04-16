@@ -1,8 +1,26 @@
+<nav class="navbar navbar-light bg-light justify-content-between mt-3">
+  <ul class="nav nav-pills">
+    <li class="nav-item">
+      <a class="nav-link" href="#" (click)="orderDifficultyAsc()">Ordenar por menor dificultad</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#" (click)="orderDifficultyDesc()">Ordenar por mayor dificultad</a>
+    </li>
+  </ul>
+  <form class="form-inline">
+    <input class="form-control mr-sm-2" type="text" [(ngModel)]="search" name="search" placeholder="Filtrar por"
+      aria-label="Search" />
+  </form>
+</nav>
 <div class="card-columns mt-4" *ngIf="recipes && recipes.length; else noRecipes">
-  <recipe-item class="card" [recipe]="recipe" (deleted)="deleteRecipe(evento)"
-    *ngFor="let recipe of recipes">
+  <recipe-item class="card" [recipe]="recipe" (delete)="deleteRecipe(recipe)" *ngFor="let recipe of recipes | recipeFilter: search">
   </recipe-item>
 </div>
 <ng-template #noRecipes>
   <h3>No hay recetas disponibles</h3>
 </ng-template>
+<div>
+  <button type="button" class="btn btn-success" (click)="goAdd()">
+    Añadir nueva receta
+  </button>
+</div>
