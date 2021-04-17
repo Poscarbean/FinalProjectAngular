@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-header bg-primary text-white">
-    {{ title }}
+    {{ tableTitle }}
   </div>
   <div class="card-block" *ngIf="ingredients.length">
     <form class="form mt-3">
@@ -17,7 +17,7 @@
     </form>
 
     <div class="row headers no-gutters">
-      <div class="col-10">{{ headers.ingredientName }}</div>
+      <div class="col-6">{{ headers.ingredientName }}</div>
     </div>
     <recipe-ingredient-item class="row no-gutters" *ngFor="let ingredient of ingredients | ingredientFilter: search"
       [ingredient]="ingredient"
@@ -26,7 +26,7 @@
   </div>
 </div><br>
 
-<div class="card-header bg-primary text-white">
+<div class="card-header bg-success text-white">
   Ingredientes seleccionados
 </div>
 <div class="card">
