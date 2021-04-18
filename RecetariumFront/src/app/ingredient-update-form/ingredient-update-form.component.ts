@@ -49,6 +49,8 @@ export class IngredientUpdateFormComponent implements OnInit {
   }
 
   updateIngredient(oldIngredient: Ingredient, newIngredient: Ingredient) {
+    this.newIngredient.ingredientName = this.capitalizeFirstLetter(this.newIngredient.ingredientName);
+
     console.log(this.ingredient);
     this.ingredient = newIngredient;
     this.ingredientService.updateIngredient(this.newIngredient.idIngredient as number, newIngredient).subscribe({
@@ -59,6 +61,10 @@ export class IngredientUpdateFormComponent implements OnInit {
 
       }
     });
+  }
+
+  capitalizeFirstLetter(string: string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
 }

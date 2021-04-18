@@ -13,9 +13,16 @@ import { RecipeService } from '../services/recipe.service';
   styleUrls: ['./recipes-form.component.css']
 })
 export class RecipesFormComponent implements OnInit {
+  tableTitle = 'Lista de ingredientes';
+  headers = {
+    ingredientName: 'Nombre'
+  };
+
+  avaliableIngredients: Ingredient[] = [];
+  recipeIngredients: Ingredient[] = [];
+  search = '';
 
   newRecipe!: Recipe;
-  ingredients: Ingredient[] = [];
   recipeAdded = false;
   imageFile = '';
   @ViewChild('formRecipe') formRecipe!: NgForm;
@@ -31,7 +38,7 @@ export class RecipesFormComponent implements OnInit {
     this.title.setTitle('Recetarium Santiosquiano | Nueva receta')
     this.resetForm();
     this.ingredientService.getAll().subscribe(
-      ingredients => this.ingredients = ingredients,
+      ingredients => this.avaliableIngredients = ingredients,
       error => console.log(error),
       () => console.log('Petición completada')
     );
@@ -68,6 +75,8 @@ export class RecipesFormComponent implements OnInit {
     this.newRecipe.description = this.capitalizeFirstLetter(this.newRecipe.description);
     this.newRecipe.instructions = this.capitalizeFirstLetter(this.newRecipe.instructions);
 
+    this.newRecipe.ingredients = this.recipeIngredients;
+
     this.recipeService.addRecipe(this.newRecipe).subscribe(
       recipe => {
         this.recipeAdded = true;
@@ -75,6 +84,14 @@ export class RecipesFormComponent implements OnInit {
       },
       error => console.error(error)
     );
+  }
+
+  addRecipeIngredient(ingredient: Ingredient): void {
+    this.recipeIngredients = [...this.recipeIngredients, ingredient];
+  }
+
+  deleteRecipeIngredient(recipeIngredient: Ingredient): void {
+    this.recipeIngredients = this.recipeIngredients.filter(ri => ri !== recipeIngredient);
   }
 
   capitalizeFirstLetter(string: string) {

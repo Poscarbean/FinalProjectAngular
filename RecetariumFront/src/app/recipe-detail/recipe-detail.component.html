@@ -1,32 +1,41 @@
 <div class="container">
   <div class="card">
-    <img class="card-img-top" *ngIf="recipe.image" [src]="recipe.image" alt="{{recipe.recipeName}}"/>
     <div class="card-body">
-      <h4 class="card-title">
-        {{ recipe.recipeName | titlecase }}
-      </h4>
-      <p class="card-text" [innerText]="recipe.description"></p>
-      <br>
-    </div>
-    <div class="card-footer text-muted">
-      {{ recipe.timeRequired }}
-      <span class="float-right" *ngFor="let fork of [1, 2, 3, 4, 5]">
-        {{fork <= recipe.difficulty ? '🍴' : ' ' }} </span>
-    </div>
+      <img class="card-img-top" *ngIf="recipe.image" [src]="recipe.image" alt="{{recipe.recipeName}}" />
+      <div class="card-body">
+        <h4 class="card-title">
+          {{ recipe.recipeName }}
+        </h4>
+        <h6 class="card-subtitle mb-2 text-muted">{{ recipe.description }}</h6>
+        <br>
+      </div>
+      <div class="card-footer text-muted">
+        {{ recipe.timeRequired }}
+        <span class="float-right" *ngFor="let fork of [1, 2, 3, 4, 5]">
+          {{fork <= recipe.difficulty ? '🍴' : ' ' }} </span>
+      </div><br>
 
-    <div class="card-body">
-      <ul class="list-group" *ngFor="let ingredient of recipe.ingredients">
-        <li class="list-group-item">{{ ingredient.ingredientName }}</li>
-      </ul>
-    </div><br>
+      <div class="card">
+        <div class="card-header bg-primary text-white">
+          Ingredientes necesarios
+        </div>
+        <div class="card-block" *ngIf="recipe.ingredients.length">
+          <div class="card">
+            <div class="card-header">
+              {{ headers.ingredientName }}
+            </div>
+            <ul class="list-group list-group-flush" *ngFor="let ingredient of recipe.ingredients">
+              <li class="list-group-item">{{ ingredient.ingredientName }}</li>
+            </ul>
+          </div>
+        </div>
+      </div><br>
 
-    <div class="card-body">
       <p class="card-text" [innerText]="recipe.instructions"></p>
-    </div><br>
+      <br>
 
-    <div class="card-body">
       <button class="btn btn-info col" (click)="goBack()">Volver</button>
-    </div>
 
+    </div>
   </div>
 </div>

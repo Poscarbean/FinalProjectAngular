@@ -1,11 +1,15 @@
-<a [routerLink]="['/recipes/recipe', recipe.idRecipe]"><img *ngIf="recipe.image" class="card-img-top" [src]="recipe.image" /></a>
+<a [routerLink]="['/recipes/recipe', recipe.idRecipe]"><img *ngIf="recipe.image" class="card-img-top"
+    [src]="recipe.image" /></a>
 <div class="card-body">
   <h4 class="card-title">
     <a [routerLink]="['/recipes/recipe', recipe.idRecipe]">{{ recipe.recipeName | titlecase }}</a>
   </h4>
   <p class="card-text" [innerText]="recipe.description"></p>
-  <div class="row mr-4 align-items-center">
-    <button class="btn btn-danger col" (click)="deleteRecipe()">Borrar</button>
+  <div>
+    <button class="btn btn-outline-warning col" (click)="goChange()">Modificar</button>
+  </div><br>
+  <div>
+    <button class="btn btn-outline-danger col" (click)="deleteRecipe()">Borrar</button>
   </div>
 </div>
 <div class="card-footer text-muted">

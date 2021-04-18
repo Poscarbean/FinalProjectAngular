@@ -12,7 +12,7 @@
   <div class="card-header bg-primary text-white">
     {{ tableTitle }}
   </div>
-  <div class="card-block" *ngIf="ingredients.length">
+  <div class="card-block" *ngIf="avaliableIngredients.length">
     <form class="form mt-3">
       <div class="form-group row">
         <label class="col-form-label col-sm-2 text-sm-right" for="filterDesc">Filtro:</label>
@@ -32,7 +32,7 @@
       </div>
       <ul class="list-group list-group-flush">
         <recipe-ingredient-item class="list-group-item"
-          *ngFor="let ingredient of ingredients | ingredientFilter: search" [ingredient]="ingredient"
+          *ngFor="let ingredient of avaliableIngredients | ingredientFilter: search" [ingredient]="ingredient"
           (add)="addRecipeIngredient(ingredient)">
         </recipe-ingredient-item>
       </ul>
@@ -67,4 +67,4 @@
   <button type="button" class="btn btn-primary" [routerLink]="['/recipes']">
     Volver
   </button>
-</div>
+</div><br>

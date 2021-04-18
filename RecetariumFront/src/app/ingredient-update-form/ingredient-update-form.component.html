@@ -5,8 +5,9 @@
       <div class="form-group row">
         <label class="col-sm-2 col-form-label text-sm-right">Nuevo nombre del ingrediente</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="nombre" placeholder="{{ingredient.ingredientName}}" [(ngModel)]="newIngredient.ingredientName" minlength="2"
-            maxlength="50" required #nameModel="ngModel" [ngClass]="{
+          <input type="text" class="form-control" name="nombre" placeholder="{{ingredient.ingredientName}}"
+            [(ngModel)]="newIngredient.ingredientName" minlength="2" maxlength="50" required #nameModel="ngModel"
+            [ngClass]="{
               'is-valid': nameModel.dirty && nameModel.valid,
               'is-invalid': nameModel.untouched && nameModel.invalid
             }" />
@@ -35,12 +36,12 @@
             Cambiar
           </button>
         </div><br><br>
-        <div class="offset-sm-2 col-sm-10">
-          <button class="btn btn-primary" [routerLink]="['/ingredients']">
-            Volver
-          </button>
-        </div>
       </div>
     </form>
+    <div>
+      <button class="btn btn-primary" [routerLink]="['/ingredients']">
+        Volver
+      </button>
+    </div>
   </div>
 </div>
