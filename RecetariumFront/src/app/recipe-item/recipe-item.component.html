@@ -2,12 +2,9 @@
     [src]="recipe.image" /></a>
 <div class="card-body">
   <h4 class="card-title">
-    <a [routerLink]="['/recipes/recipe', recipe.idRecipe]">{{ recipe.recipeName | titlecase }}</a>
+    <a [routerLink]="['/recipes/recipe', recipe.idRecipe]">{{ recipe.recipeName }}</a>
   </h4>
   <p class="card-text" [innerText]="recipe.description"></p>
-  <div>
-    <button class="btn btn-outline-warning col" (click)="goChange()">Modificar</button>
-  </div><br>
   <div>
     <button class="btn btn-outline-danger col" (click)="deleteRecipe()">Borrar</button>
   </div>

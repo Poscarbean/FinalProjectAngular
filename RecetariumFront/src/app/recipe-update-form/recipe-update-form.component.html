@@ -29,11 +29,12 @@
       <div class="card-header">
         {{ headers.ingredientName }}
       </div>
-      <ul class="list-group list-group-flush">
-        <recipe-ingredient-item class="list-group-item"
-          *ngFor="let ingredient of avaliableIngredients | ingredientFilter: search" [ingredient]="ingredient"
-          (add)="addRecipeIngredient(ingredient)">
-        </recipe-ingredient-item>
+      <ul class="list-group list-group-flush" *ngFor="let ingredient of avaliableIngredients | ingredientFilter: search"
+        (add)="addRecipeIngredient(ingredient)">
+        <li class="list-group-item">
+          <button class="btn btn-sm btn-outline-success mr-2" (click)="addRecipeIngredient(ingredient)">Añadir</button>
+          {{ingredient.ingredientName}}
+        </li>
       </ul>
     </div>
   </div>

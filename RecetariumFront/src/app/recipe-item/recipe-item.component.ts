@@ -27,8 +27,4 @@ export class RecipeItemComponent implements OnInit {
     );
   }
 
-  goChange() {
-    this.router.navigate(['/recipes/update/', this.recipe.idRecipe]);
-  }
-
 }

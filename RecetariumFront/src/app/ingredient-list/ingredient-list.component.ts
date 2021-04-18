@@ -41,8 +41,4 @@ export class IngredientListComponent implements OnInit {
     this.ingredients = this.ingredients.filter(i => i !== ingredient);
   }
 
-  goAdd(): void {
-    this.router.navigate(['ingredients/add']);
-  }
-
 }
