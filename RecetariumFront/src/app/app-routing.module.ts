@@ -6,7 +6,6 @@ import { IngredientFormComponent } from './ingredient-form/ingredient-form.compo
 import { IngredientListComponent } from './ingredient-list/ingredient-list.component';
 import { IngredientUpdateFormComponent } from './ingredient-update-form/ingredient-update-form.component';
 import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
-import { RecipeIngredientFormComponent } from './recipe-ingredient-form/recipe-ingredient-form.component';
 import { RecipeShowComponent } from './recipe-show/recipe-show.component';
 import { RecipesFormComponent } from './recipes-form/recipes-form.component';
 

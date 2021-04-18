@@ -27,7 +27,4 @@ export class IngredientItemComponent implements OnInit {
     );
   }
 
-  goChange() {
-    this.router.navigate(['/ingredients/update/', this.ingredient.idIngredient]);
-  }
 }

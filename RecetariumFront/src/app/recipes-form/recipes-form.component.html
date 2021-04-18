@@ -29,17 +29,28 @@
       <div class="card-header">
         {{ headers.ingredientName }}
       </div>
-      <ul class="list-group list-group-flush">
-        <recipe-ingredient-item class="list-group-item"
-          *ngFor="let ingredient of avaliableIngredients | ingredientFilter: search" [ingredient]="ingredient"
-          (add)="addRecipeIngredient(ingredient)">
-        </recipe-ingredient-item>
+      <ul class="list-group list-group-flush" *ngFor="let ingredient of avaliableIngredients | ingredientFilter: search"
+        (add)="addRecipeIngredient(ingredient)">
+        <li class="list-group-item">
+          <button *ngIf="!recipesIngredients.includes(ingredient)" class="btn btn-sm btn-outline-danger mr-2" (click)="deleteIngredient(ingredient)"
+            >X</button>
+          <button class="btn btn-sm btn-outline-success mr-2" (click)="addRecipeIngredient(ingredient)">Añadir</button>
+          {{ingredient.ingredientName}}
+        </li>
       </ul>
     </div>
   </div>
 </div><br>
 
-<div class="card">
+<div class="card border-danger" *ngIf="!recipeIngredients.length">
+  <div class="card-body text-danger">
+    <h6 class="card-title">
+      ¡Debes añadir al menos un (1) ingrediente para comenzar la receta!
+    </h6>
+  </div>
+</div><br>
+
+<div class="card" *ngIf="recipeIngredients.length">
   <div class="card-header bg-info text-white">
     Ingredientes seleccionados ({{ recipeIngredients.length }})
   </div>
@@ -56,7 +67,7 @@
   </div>
 </div><br>
 
-<div class="card">
+<div class="card" *ngIf="recipeIngredients.length">
   <div class="card-header bg-success text-white">Información de la receta</div>
   <div class="card-block p-3">
     <form (ngSubmit)="addRecipe()" #formRecipe="ngForm">

@@ -18,6 +18,9 @@ export class RecipesFormComponent implements OnInit {
     ingredientName: 'Nombre'
   };
 
+  recipes: Recipe[] = [];
+  recipesIngredients: Ingredient[] = [];
+
   avaliableIngredients: Ingredient[] = [];
   recipeIngredients: Ingredient[] = [];
   search = '';
@@ -41,6 +44,13 @@ export class RecipesFormComponent implements OnInit {
       ingredients => this.avaliableIngredients = ingredients,
       error => console.log(error),
       () => console.log('Petición completada')
+    );
+    this.recipeService.getAll().subscribe(
+      recipes => this.recipes = recipes,
+      error => console.log(error)
+    );
+    this.recipes.forEach(
+      recipe => this.recipesIngredients = [...this.recipesIngredients, ...recipe.ingredients]
     );
   }
 
@@ -92,6 +102,10 @@ export class RecipesFormComponent implements OnInit {
 
   deleteRecipeIngredient(recipeIngredient: Ingredient): void {
     this.recipeIngredients = this.recipeIngredients.filter(ri => ri !== recipeIngredient);
+  }
+
+  deleteIngredient(ingredient: Ingredient): void {
+    this.avaliableIngredients = this.avaliableIngredients.filter(i => i !== ingredient);
   }
 
   capitalizeFirstLetter(string: string) {

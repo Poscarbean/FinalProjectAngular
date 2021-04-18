@@ -16,11 +16,8 @@ import { RecipeShowComponent } from './recipe-show/recipe-show.component';
 import { RecipeItemComponent } from './recipe-item/recipe-item.component';
 import { RecipeFilterPipe } from './pipes/recipe-filter.pipe';
 import { RecipesFormComponent } from './recipes-form/recipes-form.component';
-import { RecipeIngredientFormComponent } from './recipe-ingredient-form/recipe-ingredient-form.component';
-import { RecipeIngredientItemComponent } from './recipe-ingredient-item/recipe-ingredient-item.component';
 import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 import { RecipeUpdateFormComponent } from './recipe-update-form/recipe-update-form.component';
-import { RecipeIngredientUpdateFormComponent } from './recipe-ingredient-update-form/recipe-ingredient-update-form.component';
 
 @NgModule({
   declarations: [
@@ -35,11 +32,8 @@ import { RecipeIngredientUpdateFormComponent } from './recipe-ingredient-update-
     RecipeItemComponent,
     RecipeFilterPipe,
     RecipesFormComponent,
-    RecipeIngredientFormComponent,
-    RecipeIngredientItemComponent,
     RecipeDetailComponent,
-    RecipeUpdateFormComponent,
-    RecipeIngredientUpdateFormComponent
+    RecipeUpdateFormComponent
   ],
   imports: [
     BrowserModule,
