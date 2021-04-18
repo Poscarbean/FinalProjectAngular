@@ -64,6 +64,10 @@ export class RecipesFormComponent implements OnInit {
   }
 
   addRecipe(): void {
+    this.newRecipe.recipeName = this.capitalizeFirstLetter(this.newRecipe.recipeName);
+    this.newRecipe.description = this.capitalizeFirstLetter(this.newRecipe.description);
+    this.newRecipe.instructions = this.capitalizeFirstLetter(this.newRecipe.instructions);
+
     this.recipeService.addRecipe(this.newRecipe).subscribe(
       recipe => {
         this.recipeAdded = true;
@@ -71,6 +75,10 @@ export class RecipesFormComponent implements OnInit {
       },
       error => console.error(error)
     );
+  }
+
+  capitalizeFirstLetter(string: string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
 }

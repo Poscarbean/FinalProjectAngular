@@ -1,3 +1,13 @@
+<div class="card border-info">
+  <div class="card-body text-info">
+    <h5 class="card-title">Primero, escoge los ingredientes de la receta</h5>
+    <h6 class="card-subtitle mb-2 text-muted">
+      Si ves que te falta alguno, añádelo antes <a [routerLink]="['/ingredients/add']">aquí</a>
+    </h6>
+  </div>
+</div><br>
+
+
 <div class="card">
   <div class="card-header bg-primary text-white">
     {{ tableTitle }}
@@ -16,26 +26,35 @@
       </div>
     </form>
 
-    <div class="row headers no-gutters">
-      <div class="col-6">{{ headers.ingredientName }}</div>
+    <div class="card">
+      <div class="card-header">
+        {{ headers.ingredientName }}
+      </div>
+      <ul class="list-group list-group-flush">
+        <recipe-ingredient-item class="list-group-item"
+          *ngFor="let ingredient of ingredients | ingredientFilter: search" [ingredient]="ingredient"
+          (add)="addRecipeIngredient(ingredient)">
+        </recipe-ingredient-item>
+      </ul>
     </div>
-    <recipe-ingredient-item class="row no-gutters" *ngFor="let ingredient of ingredients | ingredientFilter: search"
-      [ingredient]="ingredient"
-      (add)="addRecipeIngredient(ingredient)">
-    </recipe-ingredient-item>
-  </div>
-</div><br>
+  </div><br>
 
-<div class="card-header bg-success text-white">
-  Ingredientes seleccionados
-</div>
-<div class="card">
-  <div class="row headers no-gutters">
-    <div class="col-2">{{ headers.ingredientName }}</div>
+  <div class="card">
+    <div class="card-header bg-primary text-white">
+      Ingredientes seleccionados ({{ recipeIngredients.length }})
+    </div>
+    <div class="card-block" *ngIf="recipeIngredients.length">
+      <div class="card">
+        <div class="card-header">
+          {{ headers.ingredientName }}
+        </div>
+        <ul class="list-group list-group-flush" *ngFor="let recipeIngredient of recipeIngredients">
+          <li class="list-group-item"> <button class="btn btn-sm btn-outline-danger mr-2"
+              (click)="deleteRecipeIngredient(recipeIngredient)">X</button> {{ recipeIngredient.ingredientName }}</li>
+        </ul>
+      </div>
+    </div>
   </div>
-  <ul class="row no-gutters" *ngFor="let recipeIngredient of recipeIngredients">
-    <li>{{ recipeIngredient.ingredientName }}</li>
-  </ul>
 </div><br>
 
 <div>

@@ -16,14 +16,19 @@
       </div>
     </form>
 
-    <div class="row headers no-gutters">
-      <div class="col-11">{{ headers.ingredientName }}</div>
+    <div class="card">
+      <div class="card-header">
+        {{ headers.ingredientName }}
+      </div>
+      <ul class="list-group list-group-flush">
+        <ingredient-item class="list-group-item" *ngFor="let ingredient of ingredients | ingredientFilter: search"
+          [ingredient]="ingredient" (delete)="deleteIngredient(ingredient)">
+        </ingredient-item>
+      </ul>
     </div>
-    <ingredient-item class="row no-gutters" *ngFor="let ingredient of ingredients | ingredientFilter: search"
-      [ingredient]="ingredient" (delete)="deleteIngredient(ingredient)">
-    </ingredient-item>
   </div>
 </div><br>
+
 <div>
   <button type="button" class="btn btn-success" (click)="goAdd()">
     Añadir nuevo ingrediente

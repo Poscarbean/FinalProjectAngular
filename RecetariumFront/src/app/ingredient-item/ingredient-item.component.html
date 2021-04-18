@@ -1,10 +1,5 @@
 <div class="col-2 pl-2">
-  <td><button class="btn btn-sm btn-outline-danger mr-2" (click)="deleteIngredient()">X</button></td>
+  <button class="btn btn-sm btn-outline-danger mr-2" (click)="deleteIngredient()">X</button>
+  <button class="btn btn-sm btn-outline-warning mr-2" (click)="goChange()">Cambiar</button>
+  {{ingredient.ingredientName}}
 </div>
-<div class="col-2 pl-2">
-  <td>
-      <button class="btn btn-sm btn-outline-warning mr-2" (click)="goChange()">Cambiar</button>
-  </td>
-</div>
-<div class="col">{{ingredient.ingredientName}}</div>
-

@@ -38,6 +38,8 @@ export class RecipeIngredientFormComponent implements OnInit {
     this.recipeIngredients = [...this.recipeIngredients, ingredient];
   }
 
-
+  deleteRecipeIngredient(recipeIngredient: Ingredient): void {
+    this.recipeIngredients = this.recipeIngredients.filter(ri => ri !== recipeIngredient);
+  }
 
 }
