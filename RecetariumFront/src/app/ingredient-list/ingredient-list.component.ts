@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Ingredient } from '../interfaces/ingredient';
 import { IngredientService } from '../services/ingredient.service';
@@ -9,7 +10,7 @@ import { IngredientService } from '../services/ingredient.service';
   styleUrls: ['./ingredient-list.component.css']
 })
 export class IngredientListComponent implements OnInit {
-  title = 'Lista de ingredientes';
+  tableTitle = 'Lista de ingredientes';
   headers = {
     ingredientName: 'Nombre'
   };
@@ -18,6 +19,7 @@ export class IngredientListComponent implements OnInit {
   search = '';
 
   constructor(
+    private title: Title,
     private ingredientService: IngredientService,
     private router: Router
     ) { }
@@ -28,6 +30,7 @@ export class IngredientListComponent implements OnInit {
       error => console.error(error),
       () => console.log('Petición completada')
     );
+    this.title.setTitle('Recetario de la abuela | Ingredientes')
   }
 
   addIngredient(ingredient: Ingredient): void {

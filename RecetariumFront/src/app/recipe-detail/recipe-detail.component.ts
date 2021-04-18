@@ -27,7 +27,7 @@ export class RecipeDetailComponent implements OnInit {
       this.recipeService.getRecipe(params.id).subscribe(
         recipe => {
           this.recipe = recipe;
-          this.title.setTitle('Recetas Santiosquianas | ' + recipe.recipeName);
+          this.title.setTitle('Recetario de la abuela | ' + recipe.recipeName);
         },
         error => this.router.navigate(['/recipes'])
       );

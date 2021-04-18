@@ -12,7 +12,8 @@ import { IngredientService } from '../services/ingredient.service';
 })
 export class IngredientUpdateFormComponent implements OnInit {
 
-  @Input() ingredient!: Ingredient;
+  ingredient!: Ingredient;
+  oldIngredient!: Ingredient;
 
 
   newIngredient!: Ingredient;
@@ -28,7 +29,17 @@ export class IngredientUpdateFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.resetForm();
-
+    const oldIngredient: Ingredient = this.ingredient;
+    this.route.params.subscribe(
+      (params) => {
+        this.ingredientService.getIngredient(params.id).subscribe(
+          ingredient => {
+            this.ingredient = ingredient;
+            this.title.setTitle('Recetario de la abuela | Editando' + ingredient.ingredientName)
+          }
+        );
+      }
+    );
   }
 
   resetForm(): void {
@@ -37,26 +48,14 @@ export class IngredientUpdateFormComponent implements OnInit {
     };
   }
 
-  updateIngredient(newIngredient: Ingredient) {
-    const oldIngredient: Ingredient = this.ingredient;
-    this.route.params.subscribe(
-      (params) => {
-        this.ingredientService.getIngredient(params.id).subscribe(
-          ingredient => {
-            this.ingredient = ingredient;
-            this.title.setTitle('Recetas Santiosquianas | Editando' + ingredient.ingredientName)
-          },
-          error => this.router.navigate(['/ingredients'])
-        );
-      }
-    )
-
+  updateIngredient(oldIngredient: Ingredient, newIngredient: Ingredient) {
     console.log(this.ingredient);
     this.ingredient = newIngredient;
     this.ingredientService.updateIngredient(this.newIngredient.idIngredient as number, newIngredient).subscribe({
       error: error => {
         this.ingredient = oldIngredient;
         console.error(error);
+        this.router.navigate(['/ingredients'])
 
       }
     });

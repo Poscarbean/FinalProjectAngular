@@ -1,15 +1,15 @@
-<nav class="navbar navbar-expand navbar-dark bg-dark mb-4">
-  <a class="navbar-brand" href="#">{{ title }}</a>
+<nav class="navbar navbar-expand navbar-dark mb-4" style="background-color: #E59866;">
+  <a class="navbar-brand" href="#"  style="font: bold;">{{ title }}</a>
   <ul class="navbar-nav mr-auto">
-    <li class="nav-item">
+    <li class="nav-item" style="font: bold;">
       <a
         class="nav-link"
-        [routerLink]="['/welcome']"
+        [routerLink]="['/home']"
         [routerLinkActive]="['active']"
         >Inicio</a
       >
     </li>
-    <li class="nav-item">
+    <li class="nav-item" style="font: bold;">
       <a
         class="nav-link"
         [routerLink]="['/recipes']"
@@ -18,12 +18,28 @@
         >Recetas</a
       >
     </li>
-    <li class="nav-item">
+    <li class="nav-item" style="font: bold;">
+      <a
+        class="nav-link"
+        [routerLink]="['/recipes/addingredients']"
+        [routerLinkActive]="['active']"
+        >Añadir receta</a
+      >
+    </li>
+    <li class="nav-item" style="font: bold;">
       <a
         class="nav-link"
         [routerLink]="['/ingredients']"
         [routerLinkActive]="['active']"
         >Ingredientes</a
+      >
+    </li>
+    <li class="nav-item" style="font: bold;">
+      <a
+        class="nav-link"
+        [routerLink]="['/ingredients/add']"
+        [routerLinkActive]="['active']"
+        >Añadir ingrediente</a
       >
     </li>
   </ul>

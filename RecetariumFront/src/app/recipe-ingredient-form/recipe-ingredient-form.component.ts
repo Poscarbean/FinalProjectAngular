@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Ingredient } from '../interfaces/ingredient';
 import { IngredientService } from '../services/ingredient.service';
@@ -9,7 +10,7 @@ import { IngredientService } from '../services/ingredient.service';
   styleUrls: ['./recipe-ingredient-form.component.css']
 })
 export class RecipeIngredientFormComponent implements OnInit {
-  title = 'Lista de ingredientes';
+  tableTitle = 'Lista de ingredientes';
   headers = {
     ingredientName: 'Nombre'
   };
@@ -19,6 +20,7 @@ export class RecipeIngredientFormComponent implements OnInit {
   search = '';
 
   constructor(
+    private title: Title,
     private ingredientService: IngredientService,
     private router: Router
   ) { }
@@ -29,12 +31,15 @@ export class RecipeIngredientFormComponent implements OnInit {
       error => console.error(error),
       () => console.log('Petición completada')
     );
+    this.title.setTitle('Recetario de la abuela | Nueva receta')
   }
 
   addRecipeIngredient(ingredient: Ingredient): void {
     this.recipeIngredients = [...this.recipeIngredients, ingredient];
   }
 
-
+  deleteRecipeIngredient(recipeIngredient: Ingredient): void {
+    this.recipeIngredients = this.recipeIngredients.filter(ri => ri !== recipeIngredient);
+  }
 
 }

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 import { Recipe } from '../interfaces/recipe';
 import { RecipeService } from '../services/recipe.service';
 
@@ -9,15 +9,14 @@ import { RecipeService } from '../services/recipe.service';
   styleUrls: ['./recipe-show.component.css']
 })
 export class RecipeShowComponent implements OnInit {
-  title = 'Recetas'
 
   recipe!: Recipe;
   recipes: Recipe[] = [];
   search = '';
 
   constructor(
+    private title: Title,
     private recipeService: RecipeService,
-    private router: Router
     ) { }
 
   ngOnInit(): void {
@@ -26,6 +25,7 @@ export class RecipeShowComponent implements OnInit {
       error => console.error(error),
       () => console.log('Petición completada')
     );
+    this.title.setTitle('Recetario de la abuela | Recetas')
   }
 
   orderDifficultyAsc(): void {
@@ -44,10 +44,6 @@ export class RecipeShowComponent implements OnInit {
 
   deleteRecipe(recipe: Recipe): void {
     this.recipes = this.recipes.filter(r => r !== recipe);
-  }
-
-  goAdd(): void {
-    this.router.navigate(['recipes/addingredients']);
   }
 
 }
