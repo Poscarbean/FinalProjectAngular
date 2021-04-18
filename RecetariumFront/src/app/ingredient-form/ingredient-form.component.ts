@@ -3,7 +3,9 @@ import { NgForm } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Ingredient } from '../interfaces/ingredient';
+import { Recipe } from '../interfaces/recipe';
 import { IngredientService } from '../services/ingredient.service';
+import { RecipeService } from '../services/recipe.service';
 
 @Component({
   selector: 'ingredient-form',
@@ -11,6 +13,8 @@ import { IngredientService } from '../services/ingredient.service';
   styleUrls: ['./ingredient-form.component.css']
 })
 export class IngredientFormComponent implements OnInit {
+  ingredients: Ingredient[] = [];
+  ingredientNames: string[] = [];
 
   newIngredient!: Ingredient;
   ingredientAdded = false;
@@ -25,6 +29,13 @@ export class IngredientFormComponent implements OnInit {
   ngOnInit(): void {
     this.title.setTitle('Recetarium Santiosquiano | Nuevo ingrediente')
     this.resetForm();
+    this.ingredientService.getAll().subscribe(
+      ingredients => this.ingredients = ingredients,
+      error => console.log(error)
+    );
+    this.ingredients.forEach(
+      ingredient => this.ingredientNames = [...this.ingredientNames, ...ingredient.ingredientName],
+    );
   }
 
   resetForm(): void {
@@ -39,7 +50,7 @@ export class IngredientFormComponent implements OnInit {
     this.ingredientService.addIngredient(this.newIngredient).subscribe(
       ingredient => {
         this.ingredientAdded = true;
-        this.router.navigate(['/ingredients']);
+        this.router.navigate(['/recipes/add']);
       },
       error => console.error(error)
     );
