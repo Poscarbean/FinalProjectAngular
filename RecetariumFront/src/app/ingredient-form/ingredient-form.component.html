@@ -10,6 +10,14 @@
               'is-valid': nameModel.dirty && nameModel.valid,
               'is-invalid': nameModel.untouched && nameModel.invalid
             }" />
+
+            <div class="card border-danger" *ngIf="ingredientNames.includes(newIngredient.ingredientName)">
+              <div class="card-body text-danger">
+                <h6 class="card-title">
+                  ¡Ese ingrediente ya existe!
+                </h6>
+              </div>
+            </div><br>
           <!-- <div
             class="invalid-feedback"
             *ngIf="nameModel.invalid && nameModel.errors.required"
