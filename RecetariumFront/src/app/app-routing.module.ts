@@ -18,7 +18,6 @@ const ROUTES: Routes = [
     component: IngredientFormComponent,
     canDeactivate: [IngredientFormGuard]
   },
-  { path: 'recipes/addingredients', component: RecipeIngredientFormComponent},
   { path: 'recipes/add', component: RecipesFormComponent },
   { path: 'recipes', component: RecipeShowComponent },
   { path: 'recipes/recipe/:id', component: RecipeDetailComponent },

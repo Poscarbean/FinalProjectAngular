@@ -1,5 +1,63 @@
+<div class="card border-info">
+  <div class="card-body text-info">
+    <h5 class="card-title">Primero, escoge los ingredientes de la receta</h5>
+    <h6 class="card-subtitle mb-2 text-muted">
+      Si ves que te falta alguno, añádelo antes <a [routerLink]="['/ingredients/add']">aquí</a>
+    </h6>
+  </div>
+</div><br>
+
 <div class="card">
-  <div class="card-header bg-success text-white">Crear receta</div>
+  <div class="card-header bg-primary text-white">
+    {{ tableTitle }}
+  </div>
+  <div class="card-block" *ngIf="avaliableIngredients.length">
+    <form class="form mt-3">
+      <div class="form-group row">
+        <label class="col-form-label col-sm-2 text-sm-right" for="filterDesc">Filtro:</label>
+        <div class="col-sm-3">
+          <input type="text" [(ngModel)]="search" class="form-control" name="filterDesc" id="filterDesc"
+            placeholder="Filter..." />
+        </div>
+        <label class="col-form-label col-sm-5">
+          Filtrando por: {{ search }}
+        </label>
+      </div>
+    </form>
+
+    <div class="card">
+      <div class="card-header">
+        {{ headers.ingredientName }}
+      </div>
+      <ul class="list-group list-group-flush">
+        <recipe-ingredient-item class="list-group-item"
+          *ngFor="let ingredient of avaliableIngredients | ingredientFilter: search" [ingredient]="ingredient"
+          (add)="addRecipeIngredient(ingredient)">
+        </recipe-ingredient-item>
+      </ul>
+    </div>
+  </div>
+</div><br>
+
+<div class="card">
+  <div class="card-header bg-info text-white">
+    Ingredientes seleccionados ({{ recipeIngredients.length }})
+  </div>
+  <div class="card-block" *ngIf="recipeIngredients.length">
+    <div class="card">
+      <div class="card-header">
+        {{ headers.ingredientName }}
+      </div>
+      <ul class="list-group list-group-flush" *ngFor="let recipeIngredient of recipeIngredients">
+        <li class="list-group-item"> <button class="btn btn-sm btn-outline-danger mr-2"
+            (click)="deleteRecipeIngredient(recipeIngredient)">X</button> {{ recipeIngredient.ingredientName }}</li>
+      </ul>
+    </div>
+  </div>
+</div><br>
+
+<div class="card">
+  <div class="card-header bg-success text-white">Información de la receta</div>
   <div class="card-block p-3">
     <form (ngSubmit)="addRecipe()" #formRecipe="ngForm">
       <div class="form-group row">
@@ -33,18 +91,11 @@
       <div class="form-group row">
         <label class="col-sm-2 col-form-label text-sm-right">Descripción</label>
         <div class="col-sm-10">
-          <input
-            type="text"
-            class="form-control"
-            name="description"
-            [(ngModel)]="newRecipe.description"
-            minlength="10"
-            #descModel="ngModel"
-            [ngClass]="{
+          <input type="text" class="form-control" name="description" [(ngModel)]="newRecipe.description" minlength="10"
+            #descModel="ngModel" [ngClass]="{
               'is-valid': descModel.dirty && descModel.valid,
               'is-invalid': descModel.untouched && descModel.invalid
-            }"
-          />
+            }" />
           <div class="invalid-feedback">No has puesto una descripción</div>
         </div>
       </div>
@@ -52,20 +103,11 @@
       <div class="form-group row">
         <label class="col-sm-2 col-form-label text-sm-right">Dificultad</label>
         <div class="col-sm-10">
-          <input
-            type="number"
-            class="form-control"
-            name="difficulty"
-            onkeydown="return false"
-            [(ngModel)]="newRecipe.difficulty"
-            min="1"
-            max="5"
-            #diffModel="ngModel"
-            [ngClass]="{
+          <input type="number" class="form-control" name="difficulty" onkeydown="return false"
+            [(ngModel)]="newRecipe.difficulty" min="1" max="5" #diffModel="ngModel" [ngClass]="{
               'is-valid': diffModel.dirty && diffModel.valid,
               'is-invalid': diffModel.untouched && diffModel.invalid
-            }"
-          />
+            }" />
           <div class="invalid-feedback">Introduce un nivel de dificultad (1-5)</div>
         </div>
       </div>
@@ -73,17 +115,11 @@
       <div class="form-group row">
         <label class="col-sm-2 col-form-label text-sm-right">Tiempo de elaboración</label>
         <div class="col-sm-10">
-          <input
-            type="text"
-            class="form-control"
-            name="timeRequired"
-            [(ngModel)]="newRecipe.timeRequired"
-            #diffModel="ngModel"
-            [ngClass]="{
+          <input type="text" class="form-control" name="timeRequired" [(ngModel)]="newRecipe.timeRequired"
+            #diffModel="ngModel" [ngClass]="{
               'is-valid': diffModel.dirty && diffModel.valid,
               'is-invalid': diffModel.untouched && diffModel.invalid
-            }"
-          />
+            }" />
           <div class="invalid-feedback">Introduce un nivel de dificultad (1-5)</div>
         </div>
       </div>
@@ -91,41 +127,23 @@
       <div class="form-group row">
         <label class="col-sm-2 col-form-label text-sm-right">Instrucciones</label>
         <div class="col-sm-10">
-          <textarea
-            type="text"
-            class="form-control"
-            name="instructions"
-            [(ngModel)]="newRecipe.instructions"
-            required
-            minlength="10"
-            #instModel="ngModel"
-            [ngClass]="{
+          <textarea type="text" class="form-control" name="instructions" [(ngModel)]="newRecipe.instructions" required
+            minlength="10" #instModel="ngModel" [ngClass]="{
               'is-valid': instModel.dirty && instModel.valid,
               'is-invalid': instModel.untouched && instModel.invalid
-            }"
-          ></textarea>
+            }"></textarea>
           <div class="invalid-feedback">Explica la elaboración</div>
         </div>
       </div>
 
-      <!-- Imagen sin implementar -->
       <div class="form-group row">
         <label class="col-sm-2 col-form-label text-sm-right">Imagen</label>
         <div class="col-sm-10">
-          <input
-            type="file"
-            class="form-control"
-            name="image"
-            accept="image/*"
-            (change)="loadImage(imageInput)"
-            #imageInput
-            [(ngModel)]="imageFile"
-            #imgModel="ngModel"
-            [ngClass]="{
+          <input type="file" class="form-control" name="image" accept="image/*" (change)="loadImage(imageInput)"
+            #imageInput [(ngModel)]="imageFile" #imgModel="ngModel" [ngClass]="{
               'is-valid': imgModel.dirty && imgModel.valid,
               'is-invalid': imgModel.untouched && imgModel.invalid
-            }"
-          />
+            }" />
           <div class="invalid-feedback">Explica la elaboración</div>
         </div>
       </div>
@@ -144,4 +162,4 @@
       </div>
     </form>
   </div>
-</div>
+</div><br>

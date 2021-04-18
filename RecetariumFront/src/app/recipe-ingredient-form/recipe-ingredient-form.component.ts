@@ -15,7 +15,7 @@ export class RecipeIngredientFormComponent implements OnInit {
     ingredientName: 'Nombre'
   };
 
-  ingredients: Ingredient[] = [];
+  avaliableIngredients: Ingredient[] = [];
   recipeIngredients: Ingredient[] = [];
   search = '';
 
@@ -27,7 +27,7 @@ export class RecipeIngredientFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.ingredientService.getAll().subscribe(
-      ingredients => this.ingredients = ingredients,
+      ingredients => this.avaliableIngredients = ingredients,
       error => console.error(error),
       () => console.log('Petición completada')
     );

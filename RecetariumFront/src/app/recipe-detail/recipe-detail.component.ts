@@ -11,6 +11,9 @@ import { RecipeService } from '../services/recipe.service';
   styleUrls: ['./recipe-detail.component.css']
 })
 export class RecipeDetailComponent implements OnInit {
+  headers = {
+    ingredientName: 'Nombre'
+  };
 
   @Input() recipe!: Recipe;
 
