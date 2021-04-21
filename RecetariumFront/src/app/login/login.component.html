@@ -1,0 +1,24 @@
+<form class="pt-4" role="form" (ngSubmit)="login()">
+  <legend>¡Bienvenido al Recetario de la Abuela!</legend>
+
+  <div class="form-group">
+    <label for="nickname">Nombre de usuario:</label>
+    <input
+    type="text"
+    class="form-control"
+    name="nickname"
+    placeholder="Nombre de usuario"
+    [(ngModel)]="usuario.nickname">
+
+    <label for="password">Contraseña:</label>
+    <input type="password"
+    class="form-control"
+    name="password"
+    placeholder="Contraseña"
+    [(ngModel)]="usuario.password">
+  </div>
+
+  <p class="text-danger" *ngIf="error">Usuario y/o contraseña inválidos</p>
+  <button type="submit" class="btn btn-primary">Login</button>
+  <a class="btn btn-secondary mr-3" [routerLink]="['/auth/register']" role="button" href="">Crear usuario</a>
+</form>

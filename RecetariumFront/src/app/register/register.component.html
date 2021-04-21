@@ -1,0 +1,49 @@
+<div class="container">
+  <form class="mt-4" role="form" (ngSubmit)="register()">
+    <legend>Crea una cuenta de usuario</legend>
+
+    <div class="form-group">
+      <label class="col-sm-2 col-form-label text-sm-right" for="nickname">Nombre de Usuario</label>
+      <input
+      type="text"
+      class="form-control"
+      name="nickname"
+      id="nickname"
+      placeholder="Nombre de Usuario"
+      [(ngModel)]="newUser.nickname"/>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 col-form-label text-sm-right" for="email">Correo electrónico</label>
+      <input
+      type="text"
+      class="form-control"
+      name="email"
+      id="email"
+      placeholder="email@email.com"
+      [(ngModel)]="newUser.email"/>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 col-form-label text-sm-right" for="password">Contraseña</label>
+      <input
+      type="password"
+      class="form-control"
+      name="password"
+      id="password"
+      placeholder="contraseña"
+      [(ngModel)]="newUser.password"/>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 col-form-label text-sm-right" for="repeatPassword">Repetir contraseña</label>
+      <input
+      type="password"
+      class="form-control"
+      name="repeatPassword"
+      id="repeatPassword"
+      placeholder="contraseña"/>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Crear usuario</button>
+    <a class="btn btn-secondary" [routerLink]="['/auth', 'login']">Volver</a>
+  </form>
+</div>
+{{newUser | json}}

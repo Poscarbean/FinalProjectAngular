@@ -14,7 +14,7 @@ export class RecipeService {
   constructor(private http:HttpClient) { }
 
   getAll(): Observable<Recipe[]> {
-    return this.http.get<ResponseRecipes>(`${this.URL}/all`).pipe(
+    return this.http.get<ResponseRecipes>(`${this.URL}/all`, {headers: {'Authorization': 'Bearer ' + localStorage.getItem("token")}}).pipe(
       map(response => response.recipes),
       catchError((error: HttpErrorResponse) => {
         return throwError(`Error getting ingredients. Status: ${error.status}. Message: ${error.message}`);

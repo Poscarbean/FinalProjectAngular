@@ -79,6 +79,23 @@
               'is-valid': nameModel.dirty && nameModel.valid,
               'is-invalid': nameModel.untouched && nameModel.invalid
             }" />
+          <!-- <div
+            class="invalid-feedback"
+            *ngIf="nameModel.invalid && nameModel.errors.required"
+          >
+            El nombre es obligatorio
+          </div>
+          <div
+            class="invalid-feedback"
+            *ngIf="nameModel.invalid && nameModel.errors.minlength"
+          >
+            Te faltan
+            {{
+              nameModel.errors.minlength.requiredLength -
+              nameModel.errors.minlength.actualLength
+            }}
+            caracteres
+          </div> -->
         </div>
       </div>
 

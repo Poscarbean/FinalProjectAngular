@@ -16,3 +16,7 @@ export interface ResponseRecipes {
 export interface ResponseRecipe {
   recipe: Recipe;
 }
+
+export interface ResponseToken {
+  accessToken: string;
+}
